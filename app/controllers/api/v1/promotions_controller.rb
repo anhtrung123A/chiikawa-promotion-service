@@ -16,9 +16,19 @@ class Api::V1::PromotionsController < ApplicationController
       return
     else 
       if promotion_code == promotion.code
+        if promotion.is_expired
+          render json: { error: "promotion has expired" }, status: :bad_request
+          return
+        elsif promotion.is_used
+          render json: { error: "promotion has been used" }, status: :bad_request
+          return
+        end
         render json: { message: "success" }, status: :ok
+        promotion.update(is_used: true)
+        return
       else
         render json: { error: "code is invalid" }, status: :bad_request
+        return
       end  
     end
   end

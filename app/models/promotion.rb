@@ -10,11 +10,16 @@ class Promotion < ApplicationRecord
       user_id: user.id,
       description: "Happy Birthday!",
       value: 40,
-      code: "CHIIKAWA-#{SecureRandom.hex(4)}"
+      code: "CHIIKAWA-#{SecureRandom.hex(4)}",
+      expire_date: Time.current + 30.days
     }
     end
     insert_all(users_data)
     users.update_all(has_received_promotion_this_year: true)
+  end
+
+  def is_expired
+    expire_date < Time.now
   end
 
 end
