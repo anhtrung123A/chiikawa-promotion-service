@@ -16,7 +16,7 @@ class UserConsumer
           id: data["id"],
           email: data["email"],
           line_user_id: data["line_user_id"],
-          dob: data["dob"],
+          month_of_birth: Date.parse(data["dob"]).month,
           full_name: data["full_name"]
         )
         user.save
@@ -27,7 +27,7 @@ class UserConsumer
           user.update(
             email: data["email"],
             line_user_id: data["line_user_id"],
-            dob: data["dob"],
+            month_of_birth: Date.parse(data["dob"]).month,
             full_name: data["full_name"]
           )
         end
