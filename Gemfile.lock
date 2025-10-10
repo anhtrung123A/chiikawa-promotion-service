@@ -173,6 +173,11 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
+    pg (1.6.2)
+    pg (1.6.2-aarch64-linux)
+    pg (1.6.2-aarch64-linux-musl)
+    pg (1.6.2-x86_64-linux)
+    pg (1.6.2-x86_64-linux-musl)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -282,12 +287,6 @@ GEM
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
-    sqlite3 (2.7.4-aarch64-linux-gnu)
-    sqlite3 (2.7.4-aarch64-linux-musl)
-    sqlite3 (2.7.4-arm-linux-gnu)
-    sqlite3 (2.7.4-arm-linux-musl)
-    sqlite3 (2.7.4-x86_64-linux-gnu)
-    sqlite3 (2.7.4-x86_64-linux-musl)
     sshkit (1.24.0)
       base64
       logger
@@ -332,13 +331,13 @@ DEPENDENCIES
   debug
   foreman
   kamal
+  pg
   puma (>= 5.0)
   rails (~> 8.0.3)
   rubocop-rails-omakase
   solid_cable
   solid_cache
   solid_queue
-  sqlite3 (>= 2.1)
   thruster
   tzinfo-data
 
