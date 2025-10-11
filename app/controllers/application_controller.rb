@@ -5,10 +5,10 @@ class ApplicationController < ActionController::API
 
   # Set current_user from JWT token
   def authenticate_user_from_jwt
-    token = request.headers['Authorization']&.split(' ')&.last
+    token = request.headers["Authorization"]&.split(" ")&.last
 
     unless token
-      render json: { error: 'Token not provided' }, status: :unauthorized
+      render json: { error: "Token not provided" }, status: :unauthorized
       return
     end
 
@@ -18,12 +18,12 @@ class ApplicationController < ActionController::API
         token,
         ENV["JWT_SECRET"],
         true,                  # verify signature
-        algorithm: 'HS256'     # your JWT algorithm
+        algorithm: "HS256"     # your JWT algorithm
       )
 
-      @current_user = User.find(payload['sub'])
+      @current_user = User.find(payload["sub"])
     rescue JWT::DecodeError, JWT::ExpiredSignature
-      render json: { error: 'Invalid or expired token' }, status: :unauthorized
+      render json: { error: "Invalid or expired token" }, status: :unauthorized
     end
   end
 

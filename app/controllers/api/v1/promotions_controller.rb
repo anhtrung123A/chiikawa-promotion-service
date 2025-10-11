@@ -1,5 +1,4 @@
 class Api::V1::PromotionsController < ApplicationController
-
   def apply_promotion
     promotion_code = params[:promotion_code]
     if !promotion_code
@@ -13,8 +12,8 @@ class Api::V1::PromotionsController < ApplicationController
     end
     if promotion.user.id != current_user.id
       render json: { error: "you are not allowed to use this code" }, status: :unauthorized
-      return
-    else 
+      nil
+    else
       if promotion_code == promotion.code
         if promotion.is_expired
           render json: { error: "promotion has expired" }, status: :bad_request
@@ -25,11 +24,11 @@ class Api::V1::PromotionsController < ApplicationController
         end
         render json: { message: "success" }, status: :ok
         promotion.update(is_used: true)
-        return
+        nil
       else
         render json: { error: "code is invalid" }, status: :bad_request
-        return
-      end  
+        nil
+      end
     end
   end
 end
