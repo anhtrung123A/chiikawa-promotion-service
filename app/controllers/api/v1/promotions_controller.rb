@@ -1,4 +1,10 @@
 class Api::V1::PromotionsController < ApplicationController
+
+  def get_all_promotions
+    promotions = Promotion.where(user_id: current_user.id)
+    render json: { promotions: promotions }, status: :ok
+  end
+
   def apply_promotion
     promotion_code = params[:promotion_code]
     if !promotion_code

@@ -8,7 +8,7 @@ class Promotion < ApplicationRecord
     users_data = users.map do |user|
     {
       user_id: user.id,
-      description: "Happy Birthday!",
+      description: "Special promotion for you only, please enter to get wonderful discount on total payment!",
       value: 40,
       code: "CHIIKAWA-#{SecureRandom.hex(4)}",
       expire_date: Time.current + 30.days
