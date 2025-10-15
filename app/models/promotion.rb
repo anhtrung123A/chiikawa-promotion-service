@@ -11,7 +11,7 @@ class Promotion < ApplicationRecord
       description: "Special promotion for you only, please enter to get wonderful discount on total payment!",
       value: 40,
       code: "CHIIKAWA-#{SecureRandom.hex(4)}",
-      expire_date: Time.current + 30.days
+      expire_date: Date.today.end_of_month.end_of_day
     }
     end
     result = insert_all(users_data, returning: %w[id])
