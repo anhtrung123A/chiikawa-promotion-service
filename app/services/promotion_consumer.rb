@@ -16,7 +16,8 @@ class PromotionConsumer
 
       case event
       when "used"
-        puts "Received promotion used event: #{data.inspect}"
+        promotion = Promotion.where(code: data["promotion_code"]).first
+        promotion.update(is_used: true) if promotion != nil
       else
         puts "Unknown event: #{event}"
       end
