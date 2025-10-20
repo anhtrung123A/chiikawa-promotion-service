@@ -12,6 +12,7 @@ class PromotionConsumer
 
     queue.subscribe(block: true) do |_delivery_info, _properties, body|
       data = JSON.parse(body)
+      puts data
       event = data["event"]
 
       case event
