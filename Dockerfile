@@ -5,11 +5,15 @@ RUN apt-get update -qq && apt-get install -y \
   build-essential \
   libpq-dev \
   nodejs \
+  sqlite3 \
+  libsqlite3-dev \
   libyaml-dev \
   dos2unix \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+RUN gem install bundler
 
 # Copy Gemfile trước để cache bundle install
 COPY Gemfile Gemfile.lock ./
@@ -30,5 +34,4 @@ EXPOSE 3001
 
 ENTRYPOINT ["entrypoint.sh"]
 
-# Run using Foreman (reads Procfile)
 CMD ["foreman", "start"]
